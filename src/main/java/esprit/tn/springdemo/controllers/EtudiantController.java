@@ -50,7 +50,7 @@ public class EtudiantController {
             if (foundEtudiant == null) {
                 apiResponse.setResponse(org.springframework.http.HttpStatus.NOT_FOUND, "Etudiant not found");
             } else {
-                etudiant.setIdEtudiant(idEtudiant);
+                etudiant.setId(idEtudiant);
                 Etudiant updatedEtudiant = iEtudiantService.updateEtudiant(etudiant);
                 apiResponse.setResponse(org.springframework.http.HttpStatus.OK, "Etudiant updated");
                 apiResponse.addData("etudiant", updatedEtudiant);

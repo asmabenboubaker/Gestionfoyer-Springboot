@@ -2,12 +2,16 @@ package esprit.tn.springdemo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Universite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,12 +20,7 @@ public class Universite {
     private String adresse;
 
     @OneToOne(mappedBy = "universite", cascade = CascadeType.ALL)
-
     private Foyer foyer;
-
-    public void setIdUniversite(Long idUniversite) {
-        this.id = idUniversite;
-    }
 
     @Override
     public String toString() {

@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -26,10 +25,7 @@ public class Etudiant {
     Date dateNaissance;
 
     @ManyToMany(mappedBy = "etudiants")
-    //@ManyToMany
     private List<Reservation> reservations;
 
-    public void setIdEtudiant(long idEtudiant) {
-        this.id = idEtudiant;
-    }
+
 }

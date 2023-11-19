@@ -94,4 +94,21 @@ public class FoyerController {
         }
         return new ResponseEntity<>(apiResponse, apiResponse._getHttpStatus());
     }
+
+    @PostMapping("/ajouterFoyerEtAffecterAUniversite/{idUniversite}")
+    public ResponseEntity<ApiResponse> ajouterFoyerEtAffecterAUniversite (@RequestBody Foyer foyer,@PathVariable long idUniversite){
+        ApiResponse apiResponse = new ApiResponse();
+        try {
+            Foyer f = foyerService.ajouterFoyerEtAffecterAUniversite(foyer, idUniversite);
+            if (f == null) {
+                apiResponse.setResponse(HttpStatus.BAD_REQUEST,"Foyer content missing.");
+            } else {
+                apiResponse.setResponse(HttpStatus.CREATED, "Foyer and its blocs created successfully.");
+                apiResponse.addData("foyer", f);
+            }
+        } catch (Exception e) {
+            apiResponse.setResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+        }
+        return new ResponseEntity<>(apiResponse, apiResponse._getHttpStatus());
+    }
 }

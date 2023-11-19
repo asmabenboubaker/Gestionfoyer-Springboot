@@ -52,7 +52,7 @@ public class BlocController {
             if (foundBloc == null) {
                 throw new RuntimeException("Bloc not found");
             }
-            bloc.setIdBloc(idBloc);
+            bloc.setId(idBloc);
             Bloc updatedBloc = iBlocService.updateBloc(bloc);
             apiResponse.setResponse(HttpStatus.OK, "Bloc updated");
             apiResponse.addData("bloc", updatedBloc);

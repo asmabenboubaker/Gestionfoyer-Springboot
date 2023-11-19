@@ -9,18 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-
-import java.security.Key;
-import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-import java.time.ZoneId;
+import java.security.Key;
 import java.util.Base64;
 import java.util.Date;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/auth")

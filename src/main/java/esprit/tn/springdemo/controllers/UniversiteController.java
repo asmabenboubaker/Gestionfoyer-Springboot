@@ -44,7 +44,7 @@ public class UniversiteController {
         ApiResponse apiResponse = new ApiResponse();
         try {
             apiResponse.setResponse(org.springframework.http.HttpStatus.CREATED, "University updated");
-            universite.setIdUniversite(idUnivesity);
+            universite.setId(idUnivesity);
             apiResponse.addData("university", universiteService.updateUniversity(universite));
         } catch (Exception e) {
             apiResponse.setResponse(org.springframework.http.HttpStatus.BAD_REQUEST, e.getMessage());

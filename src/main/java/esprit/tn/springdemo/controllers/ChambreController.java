@@ -4,12 +4,10 @@ import esprit.tn.springdemo.entities.Chambre;
 import esprit.tn.springdemo.responses.ApiResponse;
 import esprit.tn.springdemo.services.IChambreService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -68,7 +66,7 @@ public class ChambreController {
             if (foundChambre == null) {
                 throw new RuntimeException("Chambre not found");
             }
-            c.setIdChambre(idChambre);
+            c.setId(idChambre);
             Chambre updatedChambre = iChambreService.updateChambre(c);
             apiResponse.setResponse(org.springframework.http.HttpStatus.OK, "Chambre updated");
             apiResponse.addData("chambre", updatedChambre);

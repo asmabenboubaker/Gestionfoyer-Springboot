@@ -1,10 +1,9 @@
 package esprit.tn.springdemo.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -12,7 +11,8 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-
+@AllArgsConstructor
+@NoArgsConstructor
 public class Bloc {
 
     @Id
@@ -49,7 +49,4 @@ public class Bloc {
                 '}';
     }
 
-    public void setIdBloc(long idBloc) {
-        this.id = idBloc;
-    }
 }
