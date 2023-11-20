@@ -1,5 +1,6 @@
 package esprit.tn.springdemo.services;
 
+import esprit.tn.springdemo.dto.FoyerDTO;
 import esprit.tn.springdemo.entities.Foyer;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface IFoyerService {
     void removeFoyer(long idFoyer);
 
     Foyer ajouterFoyerEtAffecterAUniversite (Foyer foyer, long idUniversite) ;
+
+    public FoyerDTO mapToDTO(Foyer foyer);
 }
