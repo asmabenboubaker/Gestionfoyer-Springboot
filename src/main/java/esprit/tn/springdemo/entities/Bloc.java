@@ -1,5 +1,6 @@
 package esprit.tn.springdemo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,9 +25,6 @@ public class Bloc {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Foyer foyer;
 
-    //@JsonIgnore
-    @OneToMany(mappedBy = "bloc")
-    //
     //@OneToMany(mappedBy = "bloc", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     // FetchType.Lazy : Load only Bloc data
     // FetchType.Eager : Load Bloc data and Chambre data
@@ -36,6 +34,8 @@ public class Bloc {
     // CascadeType.MERGE : Apply only merge operation on Chambre to Bloc
     // CascadeType.REMOVE : Apply only remove operation on Chambre to Bloc
     // CascadeType.REFRESH : Apply only refresh operation on Chambre to Bloc
+    @OneToMany(mappedBy = "bloc")
+    @JsonIgnore
     private List<Chambre> chambres;
 
     @Override
