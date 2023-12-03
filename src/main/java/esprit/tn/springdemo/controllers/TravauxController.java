@@ -59,4 +59,9 @@ public class TravauxController {
         Travaux updated = iTravauxService.addTravaux(existingAudience);
         return ResponseEntity.ok(updated);
     }
+
+    @GetMapping("/AudienceByLocation/{location}")
+    public List<Travaux> getFilteredAppointmentsByLocation(@PathVariable int location) {
+        return travauxRepo.findAllByBloc(location);
+    }
 }
