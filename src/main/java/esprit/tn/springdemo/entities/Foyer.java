@@ -1,6 +1,7 @@
 package esprit.tn.springdemo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,6 +27,7 @@ public class Foyer {
     private Universite universite;
 
     @OneToMany(mappedBy = "foyer", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Bloc> blocs;
 
     @Override

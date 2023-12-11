@@ -2,8 +2,10 @@ package esprit.tn.springdemo.controllers;
 
 import esprit.tn.springdemo.entities.Bloc;
 import esprit.tn.springdemo.entities.Chambre;
+import esprit.tn.springdemo.entities.Foyer;
 import esprit.tn.springdemo.responses.ApiResponse;
 import esprit.tn.springdemo.services.IBlocService;
+import esprit.tn.springdemo.services.IFoyerService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200/", allowedHeaders = "*")
 public class BlocController {
     private final IBlocService iBlocService;
+    private final IFoyerService iFoyerService;
 
     @GetMapping("")
     public ResponseEntity<ApiResponse> getBlocs() {
@@ -34,7 +37,10 @@ public class BlocController {
     public List<Bloc> loadData() {
         return iBlocService.retrieveBlocs();
     }
-
+    @GetMapping("/datafoyer")
+    public List<Foyer> loadDatafoyer() {
+        return iFoyerService.retrieveAllFoyers();
+    }
     @PostMapping("")
     public ResponseEntity<ApiResponse> addBloc(@RequestBody Bloc bloc) {
         ApiResponse apiResponse = new ApiResponse();
@@ -106,6 +112,18 @@ public class BlocController {
             Bloc updatedBloc = iBlocService.affectChambres(idBloc, chambres);
             apiResponse.setResponse(HttpStatus.OK, "chambres affected");
             apiResponse.addData("bloc", updatedBloc);
+        } catch (Exception e) {
+            apiResponse.setResponse(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
+        return new ResponseEntity<>(apiResponse, apiResponse._getHttpStatus());
+    }
+    @PostMapping("/{foyerId}")
+    public ResponseEntity<ApiResponse> addBloc(@RequestBody Bloc bloc, @PathVariable Long foyerId) {
+        ApiResponse apiResponse = new ApiResponse();
+        try {
+            Bloc addedBloc = iBlocService.addBlocWithFoyer(bloc, foyerId);
+            apiResponse.setResponse(HttpStatus.CREATED, "Bloc added");
+            apiResponse.addData("bloc", addedBloc);
         } catch (Exception e) {
             apiResponse.setResponse(HttpStatus.BAD_REQUEST, e.getMessage());
         }

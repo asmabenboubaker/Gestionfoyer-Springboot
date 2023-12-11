@@ -17,5 +17,5 @@ public interface IBlocService {
     void removeBloc(long idBloc);
 
     Bloc affectChambres(long blocId, List<Chambre> chambres);
-
+     Bloc addBlocWithFoyer(Bloc bloc, Long foyerId);
 }
